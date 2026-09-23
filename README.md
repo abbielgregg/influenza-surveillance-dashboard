@@ -4,7 +4,7 @@ Analysis of UKHSA influenza surveillance data for the East Midlands, looking at 
 ## Data Availability 
 - Test positivity: complete coverage, 2017 - present
 - ICU/HDU admission rate: complete coverage, 2020 - present
-- Hospital admission rate: only available 2020-09-28 to 2024-05-13 (reporting appears to have stopped after this date)
+- Hospital admission rate: available 2020-09-28 to 2024-05-13 under the "East Midlands" (UKHSA Region) geography. UKHSA restructured their regional geography from 9 UKHSA Regions to 4 UKHSA Super Regions starting 30 September 2024 — hospital admission data likely continues under a new, larger regional grouping (not yet pulled in this project).
 
 The combined "complete overlap" dataset is limited to the hospital admission rate's timeframe (up to 2024-05-13). Test positivity and ICU/HDU admission data continue beyond this and could be explored separately in future work. 
 
