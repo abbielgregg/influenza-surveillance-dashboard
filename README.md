@@ -2,11 +2,11 @@
 Analysis of UKHSA influenza surveillance data for the East Midlands, looking at test positivity, hospital admissions, and ICU/HDU admissions.
 
 ## Data Availability 
-- Test positivity: complete coverage, 2017 - present
-- ICU/HDU admission rate: complete coverage, 2020 - present
-- Hospital admission rate: available 2020-09-28 to 2024-05-13 under the "East Midlands" (UKHSA Region) geography. UKHSA restructured their regional geography from 9 UKHSA Regions to 4 UKHSA Super Regions starting 30 September 2024 — hospital admission data likely continues under a new, larger regional grouping (not yet pulled in this project).
+- Test positivity: complete coverage, 2017–present (reported year-round, weekly in season / fortnightly in summer)
+- ICU/HDU admission rate: available 2020–present, but currently paused. UKHSA confirms seasonal reporting: the 2025–2026 FluSurvey season ended 16 April 2026, and hospitalisation-related metrics pause over summer, resuming for winter 2026 ([UKHSA source](https://ukhsa-dashboard.data.gov.uk/respiratory-viruses/influenza)).
+- Hospital admission rate: available 2020-09-28 to 2024-05-13 under the "East Midlands" (UKHSA Region) geography. This predates UKHSA's regional geography restructuring (9 UKHSA Regions → 4 UKHSA Super Regions, effective 30 September 2024), which changed how this metric is reported at the East Midlands level going forward.
 
-The combined "complete overlap" dataset is limited to the hospital admission rate's timeframe (up to 2024-05-13). Test positivity and ICU/HDU admission data continue beyond this and could be explored separately in future work. 
+The combined "complete overlap" dataset is limited to the hospital admission rate's availability window (up to 2024-05-13). Test positivity continues year-round and is shown separately on the live dashboard.
 
 ## Outlier Detection
 Standard IQR-based potential outlier detection flagged a notable number of points across all three metrics: 16 for hospital admissions, 43 for ICU/HCU admissions, and 58 for test positivity. 
