@@ -21,13 +21,23 @@ date_range = st.sidebar.date_input(
     max_value=max_date
 )
 
-metrics = st.sidebar.multiselect(
+# Mapping between display names and actual column names
+metric_labels = {
+    "Hospital Admission Rate": "hospital_admission_rate",
+    "ICU/HDU Admission Rate": "icu_hdu_admission_rate",
+    "Test Positivity": "test_positivity"
+}
+
+selected_labels = st.sidebar.multiselect(
     "Select metrics to display",
-    options=["hospital_admission_rate", "icu_hdu_admission_rate", "test_positivity"],
-    default=["hospital_admission_rate", "icu_hdu_admission_rate", "test_positivity"]
+    options=list(metric_labels.keys()),
+    default=list(metric_labels.keys())
 )
 
-# Filter data based on selections
+# Convert the selected labels back to actual column names
+metrics = [metric_labels[label] for label in selected_labels]
+
+# Filter data based on selections 
 if len(date_range) == 2:
     start_date, end_date = date_range
     filtered = df[(df["date"].dt.date >= start_date) & (df["date"].dt.date <= end_date)]
@@ -36,7 +46,8 @@ else:
 
 # Display 
 if metrics:
-    st.line_chart(filtered.set_index("date")[metrics])
+    display_df = filtered.set_index("date")[metrics].rename(columns={v: k for k, v in metric_labels.items()})
+    st.line_chart(display_df)
 else:
     st.warning("Select at least one metric to display.")
 
