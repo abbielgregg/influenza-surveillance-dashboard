@@ -5,6 +5,12 @@ st.set_page_config(page_title="East Midlands Flu Surveillance", layout="wide")
 
 st.title("East Midlands Influenza Surveillance Dashboard")
 st.write("Weekly influenza metrics for the East Midlands region, sourced from UKHSA.")
+st.info(
+    "**Data note:** Hospital admission rate data is only available up to 2024-05-13. "
+    "UKHSA restructured regional reporting geographies (9 UKHSA Regions → 4 UKHSA Super Regions) "
+    "from 30 September 2024, which affected how this metric is reported at the East Midlands level. "
+    "Test positivity and ICU/HDU admission rate continue to be reported and are shown beyond this date."
+)
 
 df = pd.read_csv("data/processed/flu_merged.csv", parse_dates=["date"])
 
