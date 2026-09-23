@@ -1,0 +1,23 @@
+name: Refresh UKHSA data
+on:
+  schedule:
+    - cron: "0 17 * * 4"  # every Thursday at 5am UTC (1hr after UKHSA's 4pm GMT update)
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests pandas
+      - run: python scripts/01_fetch_data.py
+      - run: python scripts/02_clean_data.py
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/
+          git commit -m "Automated data refresh" || echo "No changes to commit"
+          git push
