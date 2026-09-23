@@ -22,8 +22,10 @@ Cross-referencing with [UKHSA's Winter 2022 to 2023 seasonal respiratory surveil
 - [x] Selected three metrics: hospital admissions, ICU/HDU admissions, test positivity
 - [x] Built fetch script to pull and save raw data via the API
 - [x] Clean and merge datasets (align weekly dates across all three metrics)
-- [ ] Exploratory analysis — check for seasonality, missing data, outliers
-- [ ] Build dashboard (Streamlit)
-- [ ] Deploy dashboard
+- [x] Exploratory analysis — check for seasonality (average across all years), missing data, outliers
+- [x] Build first dashboard (Streamlit)
+- [x] Deploy first dashboard
 - [ ] Write up findings / add public health context section
+- [ ] Make graphs for seasonality by year
+- [ ] Add ideas from notion to dashboard
 
