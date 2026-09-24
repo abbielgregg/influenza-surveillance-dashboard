@@ -4,33 +4,22 @@ import pandas as pd
 import streamlit.components.v1 as components
 
 # Match sidebar multiselect tag colours to the line chart colours
-components.html("""
-<script>
-const colorMap = {
-  "Hospital Admission Rate": "#0068C9",
-  "ICU/HDU Admission Rate": "#83C9FF",
-  "Test Positivity": "#FF2B2B"
-};
-
-function colorTags() {
-  const doc = window.parent.document;
-  const tags = doc.querySelectorAll('span[data-baseweb="tag"]');
-  tags.forEach(tag => {
-    Object.keys(colorMap).forEach(label => {
-      if (tag.textContent.includes(label)) {
-        tag.style.backgroundColor = colorMap[label];
-        tag.style.borderColor = colorMap[label];
-      }
-    });
-  });
+st.markdown("""
+<style>
+div[data-baseweb="tag"]:nth-of-type(1) {
+    background-color: #0068C9 !important;
+    border-color: #0068C9 !important;
 }
-
-// Streamlit re-renders the DOM on every interaction, so keep watching for it
-const observer = new MutationObserver(colorTags);
-observer.observe(window.parent.document.body, { childList: true, subtree: true });
-colorTags();
-</script>
-""", height=0)
+div[data-baseweb="tag"]:nth-of-type(2) {
+    background-color: #83C9FF !important;
+    border-color: #83C9FF !important;
+}
+div[data-baseweb="tag"]:nth-of-type(3) {
+    background-color: #FF2B2B !important;
+    border-color: #FF2B2B !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 st.set_page_config(page_title="East Midlands Flu Surveillance", layout="wide")
 
