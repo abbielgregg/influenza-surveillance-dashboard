@@ -1,6 +1,24 @@
 import streamlit as st
 import pandas as pd
 
+st.markdown("""
+<style>
+span[aria-label="Hospital Admission Rate"] {
+    background-color: #0068C9 !important;
+    border-color: #0068C9 !important;
+}
+span[aria-label="ICU/HDU Admission Rate"] {
+    background-color: #83C9FF !important;
+    border-color: #83C9FF !important;
+    color: #0E1117 !important;
+}
+span[aria-label="Test Positivity"] {
+    background-color: #FF2B2B !important;
+    border-color: #FF2B2B !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 st.set_page_config(page_title="East Midlands Flu Surveillance", layout="wide")
 
 st.title("East Midlands Influenza Surveillance Dashboard")
