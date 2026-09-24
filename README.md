@@ -1,7 +1,7 @@
 # WORK IN PROGRESS
 
 # East Midlands Influenza Surveillance Dashboard
-View the live dashboard **[here](https://your-app-url.streamlit.app)** to view weekly influenza surveillance data for the East Midlands region sourced from [UKHSA](https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/Influenza/geography_types/UKHSA%20Region/geographies/East%20Midlands/metrics?format=api).
+View the live dashboard **[here](https://influenza-surveillance-eastmidlands.streamlit.app)** to view weekly influenza surveillance data for the East Midlands region sourced from [UKHSA](https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/Influenza/geography_types/UKHSA%20Region/geographies/East%20Midlands/metrics?format=api).
 
 ## Data Availability 
 - Test positivity: complete coverage, 2017–present (reported year-round, weekly in season / fortnightly in summer)
