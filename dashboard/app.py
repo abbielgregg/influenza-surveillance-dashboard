@@ -16,7 +16,7 @@ st.info(
 
 df = pd.read_csv("data/processed/flu_merged.csv", parse_dates=["date"])
 
-# Sidebar controls
+# --- Sidebar controls ---
 st.sidebar.header("Filters")
 
 min_date = df["date"].min().date()
@@ -25,16 +25,33 @@ max_date = df["date"].max().date()
 # Quick range presets
 range_option = st.sidebar.radio(
     "Time range",
-    options=["Last 5 years", "Full history", "Custom"],
-    index=0
+    options=[
+        "Past Month",
+        "Past 3 Months",
+        "Past 6 Months",
+        "Past Year",
+        "Past 2 Years",
+        "Last 5 Years",
+        "Full History",
+        "Custom"
+    ],
+    index=5  # defaults to "Last 5 Years"
 )
 
-if range_option == "Last 5 years":
-    start_date = max_date - pd.DateOffset(years=5)
-    start_date = start_date.date()
+preset_offsets = {
+    "Past Month": pd.DateOffset(months=1),
+    "Past 3 Months": pd.DateOffset(months=3),
+    "Past 6 Months": pd.DateOffset(months=6),
+    "Past Year": pd.DateOffset(years=1),
+    "Past 2 Years": pd.DateOffset(years=2),
+    "Last 5 Years": pd.DateOffset(years=5),
+}
+
+if range_option in preset_offsets:
+    start_date = (pd.Timestamp(max_date) - preset_offsets[range_option]).date()
     end_date = max_date
     st.sidebar.caption(f"{start_date} to {end_date}")
-elif range_option == "Full history":
+elif range_option == "Full History":
     start_date = min_date
     end_date = max_date
     st.sidebar.caption(f"{start_date} to {end_date}")
