@@ -1,6 +1,37 @@
 import streamlit as st
 import pandas as pd
 
+import streamlit.components.v1 as components
+
+# Match sidebar multiselect tag colours to the line chart colours
+components.html("""
+<script>
+const colorMap = {
+  "Hospital Admission Rate": "#0068C9",
+  "ICU/HDU Admission Rate": "#83C9FF",
+  "Test Positivity": "#FF2B2B"
+};
+
+function colorTags() {
+  const doc = window.parent.document;
+  const tags = doc.querySelectorAll('span[data-baseweb="tag"]');
+  tags.forEach(tag => {
+    Object.keys(colorMap).forEach(label => {
+      if (tag.textContent.includes(label)) {
+        tag.style.backgroundColor = colorMap[label];
+        tag.style.borderColor = colorMap[label];
+      }
+    });
+  });
+}
+
+// Streamlit re-renders the DOM on every interaction, so keep watching for it
+const observer = new MutationObserver(colorTags);
+observer.observe(window.parent.document.body, { childList: true, subtree: true });
+colorTags();
+</script>
+""", height=0)
+
 st.set_page_config(page_title="East Midlands Flu Surveillance", layout="wide")
 
 st.title("East Midlands Influenza Surveillance Dashboard")
