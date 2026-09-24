@@ -31,7 +31,7 @@ Cross-referencing with [UKHSA's Winter 2022 to 2023 seasonal respiratory surveil
 - [x] Exploratory analysis — check for seasonality (average across all years), missing data, outliers
 - [x] Build first dashboard (Streamlit)
 - [x] Deploy first dashboard
-- [x] Write up findings / add public health context section
+- [ ] Write up findings / add public health context section
 - [ ] Make graphs for seasonality by year
-- [ ] Add ideas from notion to dashboard
+- [ ] Add ideas from notion to-do list to dashboard
 
