@@ -92,6 +92,13 @@ metric_labels = {
     "Test Positivity": "test_positivity"
 }
 
+# Mapping between display names and their fixed chart colours
+metric_colors = {
+    "Hospital Admission Rate": "#0068C9",
+    "ICU/HDU Admission Rate": "#83C9FF",
+    "Test Positivity": "#FF2B2B"
+}
+
 selected_labels = st.sidebar.multiselect(
     "Select metrics to display",
     options=list(metric_labels.keys()),
@@ -113,7 +120,8 @@ if metrics:
     tab1, tab2, tab3 = st.tabs(["Chart", "Tabular data", "Download"])
 
     with tab1:
-        st.line_chart(display_df)
+        chart_colors = [metric_colors[label] for label in selected_labels]
+        st.line_chart(display_df, color=chart_colors)
 
     with tab2:
         st.dataframe(display_df, use_container_width=True)
@@ -138,5 +146,3 @@ if metrics:
         )
 else:
     st.warning("Select at least one metric to display.")
-
-st.caption(f"Showing {len(filtered)} weeks of data.")
