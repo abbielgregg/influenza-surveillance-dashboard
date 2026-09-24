@@ -99,13 +99,23 @@ if metrics:
         st.dataframe(display_df, use_container_width=True)
 
     with tab3:
-        csv = display_df.to_csv().encode("utf-8")
-        st.download_button(
-            label="Download filtered data as CSV",
-            data=csv,
-            file_name="flu_surveillance_filtered.csv",
-            mime="text/csv"
-        )
+    st.write("Download the currently filtered view:")
+    filtered_csv = display_df.to_csv().encode("utf-8")
+    st.download_button(
+        label="Download filtered data as CSV",
+        data=filtered_csv,
+        file_name="flu_surveillance_filtered.csv",
+        mime="text/csv"
+    )
+
+    st.write("Or download the full dataset (all dates, all metrics):")
+    full_csv = df.rename(columns={v: k for k, v in metric_labels.items()}).to_csv(index=False).encode("utf-8")
+    st.download_button(
+        label="Download full dataset as CSV",
+        data=full_csv,
+        file_name="flu_surveillance_full.csv",
+        mime="text/csv"
+    )
 else:
     st.warning("Select at least one metric to display.")
 
