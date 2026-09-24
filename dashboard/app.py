@@ -86,9 +86,11 @@ metrics = [metric_labels[label] for label in selected_labels]
 # Filter data based on selections 
 filtered = df[(df["date"].dt.date >= start_date) & (df["date"].dt.date <= end_date)]
 
-# Display
+# Display 
 if metrics:
     display_df = filtered.set_index("date")[metrics].rename(columns={v: k for k, v in metric_labels.items()})
+    display_df.index = display_df.index.date  # strips the time component, keeps just the date
+    display_df.index.name = "Date"
 
     tab1, tab2, tab3 = st.tabs(["Chart", "Tabular data", "Download"])
 
