@@ -3,6 +3,9 @@
 # Influenza Surveillance Dashboard Project
 Analysis of UKHSA influenza surveillance data for the East Midlands, looking at test positivity, hospital admissions, and ICU/HDU admissions.
 
+## Live Dashboard
+**[View the live dashboard](https://your-app-url.streamlit.app)**
+
 ## Data Availability 
 - Test positivity: complete coverage, 2017–present (reported year-round, weekly in season / fortnightly in summer)
 - ICU/HDU admission rate: available 2020–present, but currently paused. UKHSA confirms seasonal reporting: the 2025–2026 FluSurvey season ended 16 April 2026, and hospitalisation-related metrics pause over summer, resuming for winter 2026 ([UKHSA source](https://ukhsa-dashboard.data.gov.uk/respiratory-viruses/influenza)).
