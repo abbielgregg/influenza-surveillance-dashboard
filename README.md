@@ -1,3 +1,5 @@
+# WORK IN PROGRESS
+
 # Influenza Surveillance Dashboard Project
 Analysis of UKHSA influenza surveillance data for the East Midlands, looking at test positivity, hospital admissions, and ICU/HDU admissions.
 
