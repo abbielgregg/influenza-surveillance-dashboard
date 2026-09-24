@@ -1,26 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-import streamlit.components.v1 as components
-
-# Match sidebar multiselect tag colours to the line chart colours
-st.markdown("""
-<style>
-div[data-baseweb="tag"]:nth-of-type(1) {
-    background-color: #0068C9 !important;
-    border-color: #0068C9 !important;
-}
-div[data-baseweb="tag"]:nth-of-type(2) {
-    background-color: #83C9FF !important;
-    border-color: #83C9FF !important;
-}
-div[data-baseweb="tag"]:nth-of-type(3) {
-    background-color: #FF2B2B !important;
-    border-color: #FF2B2B !important;
-}
-</style>
-""", unsafe_allow_html=True)
-
 st.set_page_config(page_title="East Midlands Flu Surveillance", layout="wide")
 
 st.title("East Midlands Influenza Surveillance Dashboard")
