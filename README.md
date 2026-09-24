@@ -1,7 +1,11 @@
-# WORK IN PROGRESS
+# PROJECT IN PROGRESS
 
 # East Midlands Influenza Surveillance Dashboard
-View the live dashboard **[here](https://influenza-surveillance-eastmidlands.streamlit.app)** to view weekly influenza surveillance data for the East Midlands region sourced from [UKHSA](https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/Influenza/geography_types/UKHSA%20Region/geographies/East%20Midlands/metrics?format=api).
+This project analyses weekly influenza surveillance data for the East Midlands, sourced from the [UKHSA Data Dashboard API](https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/Influenza/geography_types/UKHSA%20Region/geographies/East%20Midlands/metrics?format=api). It pulls hospital admission rates, ICU/HCU admission rates, and test positivity, presenting them as an interactive dashboard to explore trends directly. 
+
+The project was built to advance my technical skills, following my [RNA-seq reproducibility project](https://github.com/abbielgregg/rna-seq-hpc-pipeline) to move from molecular-level analysis to population-level public health surveillance. Each project has a similar emphasis on transparent, reproducible data handling. This pipeline runs on a weekly schedule via GitHub Actions, automatically pulling new data as UKHSA publishes it. 
+
+View the live dashboard **[here](https://influenza-surveillance-eastmidlands.streamlit.app)**.
 
 ## Data Availability 
 - Test positivity: complete coverage, 2017–present (reported year-round, weekly in season / fortnightly in summer)
