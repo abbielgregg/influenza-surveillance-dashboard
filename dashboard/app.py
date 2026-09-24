@@ -83,12 +83,11 @@ selected_labels = st.sidebar.multiselect(
 # Convert the selected labels back to actual column names
 metrics = [metric_labels[label] for label in selected_labels]
 
-# Filter data based on selections 
-filtered = df[(df["date"].dt.date >= start_date) & (df["date"].dt.date <= end_date)]
-
 # --- Display ---
 if metrics:
     display_df = filtered.set_index("date")[metrics].rename(columns={v: k for k, v in metric_labels.items()})
+    display_df.index = display_df.index.date  # strips the time component, keeps just the date
+    display_df.index.name = "Date"
 
     tab1, tab2, tab3 = st.tabs(["Chart", "Tabular data", "Download"])
 
@@ -99,11 +98,21 @@ if metrics:
         st.dataframe(display_df, use_container_width=True)
 
     with tab3:
-        csv = display_df.to_csv().encode("utf-8")
+        st.write("Download the currently filtered view:")
+        filtered_csv = display_df.to_csv().encode("utf-8")
         st.download_button(
             label="Download filtered data as CSV",
-            data=csv,
+            data=filtered_csv,
             file_name="flu_surveillance_filtered.csv",
+            mime="text/csv"
+        )
+
+        st.write("Or download the full dataset (all dates, all metrics):")
+        full_csv = df.rename(columns={v: k for k, v in metric_labels.items()}).to_csv(index=False).encode("utf-8")
+        st.download_button(
+            label="Download full dataset as CSV",
+            data=full_csv,
+            file_name="flu_surveillance_full.csv",
             mime="text/csv"
         )
 else:
