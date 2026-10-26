@@ -36,7 +36,7 @@ Cross-referencing with [UKHSA's Winter 2022 to 2023 seasonal respiratory surveil
 - [x] Add a section to download the .csv files
 - [x] Make sidebar tags the same colour as lines on the graph
 - [ ] Make graphs for seasonality by year
-- [ ] Add a ML aspect
+- [ ] Add a ML aspect ? brainstorm ideas
 - [ ] Add a storyboard/slideshow of key findings (e.g. incl 2022-2023 flu surge)
 - [ ] Add to the public health analysis section in docs
 - [ ] Expand dataset using overall UK data and compare to EM
