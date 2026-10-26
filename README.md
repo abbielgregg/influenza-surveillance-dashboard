@@ -39,7 +39,7 @@ Cross-referencing with [UKHSA's Winter 2022 to 2023 seasonal respiratory surveil
 - [ ] Add a storyboard/slideshow of key findings (e.g. incl 2022-2023 flu surge)
 - [ ] Add to the public health analysis section in docs
 - [ ] Expand dataset using overall UK data and compare to EM
-- [ ] Expand dataset to show population denisty (map) or weather
+- [ ] Expand dataset to show population density (map) or weather
 - [ ] Stats test: is this seasons peak statistically higher than the historical average?
 - [ ] Architecture diagram to show the pipeline of repo (add to README)
 - [ ] A short demo vid/gif showing the dashboard in action (add to README)
