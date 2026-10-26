@@ -15,7 +15,7 @@ View the live dashboard **[here](https://influenza-surveillance-eastmidlands.str
 The combined "complete overlap" dataset is limited to the hospital admission rate's availability window (up to 2024-05-13). Test positivity continues year-round and is shown separately on the live dashboard.
 
 ## Outlier Detection
-Standard IQR-based potential outlier detection flagged a notable number of points across all three metrics: 16 for hospital admissions, 43 for ICU/HCU admissions, and 58 for test positivity. 
+Standard IQR-based potential outlier detection flagged a notable number of points across all three metrics: 16 for hospital admissions, 43 for ICU/HDU admissions, and 58 for test positivity. 
 
 Visual inspection of the time series confirms these are not data quality issues. They correspond to expected winter flu season peaks, which recur predictably every year. IQR methods assume a roughly stable distribution and are not well suited to inherently seasonal data like this. 
 
@@ -35,8 +35,7 @@ Cross-referencing with [UKHSA's Winter 2022 to 2023 seasonal respiratory surveil
 - [x] Add a public health analysis section in docs
 - [x] Add a section to download the .csv files
 - [x] Make sidebar tags the same colour as lines on the graph
-- [ ] Make graphs for seasonality by year
-- [ ] Add a ML aspect ? brainstorm ideas
+- [ ] Add a ML aspect 
 - [ ] Add a storyboard/slideshow of key findings (e.g. incl 2022-2023 flu surge)
 - [ ] Add to the public health analysis section in docs
 - [ ] Expand dataset using overall UK data and compare to EM
