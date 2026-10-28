@@ -12,7 +12,11 @@ View the live dashboard **[here](https://influenza-surveillance-eastmidlands.str
 - ICU/HDU admission rate: available 2020–present, but currently paused. UKHSA confirms seasonal reporting: the 2025–2026 FluSurvey season ended 16 April 2026, and hospitalisation-related metrics pause over summer, resuming for winter 2026 ([UKHSA source](https://ukhsa-dashboard.data.gov.uk/respiratory-viruses/influenza)).
 - Hospital admission rate: available 2020-09-28 to 2024-05-13 under the "East Midlands" (UKHSA Region) geography. This predates UKHSA's regional geography restructuring (9 UKHSA Regions → 4 UKHSA Super Regions, effective 30 September 2024), which changed how this metric is reported at the East Midlands level going forward.
 
-The combined "complete overlap" dataset is limited to the hospital admission rate's availability window (up to 2024-05-13). Test positivity continues year-round and is shown separately on the live dashboard.
+### Cleaning the Data
+
+The week of 2018-01-01 appeared twice in the ICU/HDU dataset, with UKHSA publishing two different values for that same week (0.40 and 0.51). I resolved the error by keeping last published value, assuming it was an updated figure. 
+
+**As of current date** East Midlands has 485 weeks, with 228 complete weeks from 2020-09-28 to 2026-10-12. This is the same as before, and the hospital data now runs to the present. England has 589 weeks from 2015. The hospital and ICU/HDU rates have no gaps at all. Test positivity only starts in 2017-07-03, which accounts for the 104 missing weeks. Its complete overlap is 485 weeks, from 2017-07-03 to 2026-10-12. For my comparison, England's data covers every period for East Midlands. The East Midlands hospital and ICU/HDU series have gaps (257 and 169 missing weeks), and those will show up as breaks in the lines when overlaid. Test positivity is the one metric both places have for the full history, so it’s the cleanest one for comparison.
 
 ## Outlier Detection
 Standard IQR-based potential outlier detection flagged a notable number of points across all three metrics: 16 for hospital admissions, 43 for ICU/HDU admissions, and 58 for test positivity. 

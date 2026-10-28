@@ -32,7 +32,7 @@ st.info(
     "is reported year-round and is shown up to the most recent available week."
 )
 
-df = pd.read_csv("data/processed/flu_merged.csv", parse_dates=["date"])
+df = pd.read_csv("data/processed/east_midlands_flu_merged.csv", parse_dates=["date"])
 
 # --- Sidebar controls ---
 st.sidebar.header("Filters")
