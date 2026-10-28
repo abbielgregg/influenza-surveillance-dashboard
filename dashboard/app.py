@@ -1,5 +1,8 @@
 import streamlit as st
 import pandas as pd
+import altair as alt
+
+st.set_page_config(page_title="East Midlands Flu Surveillance", layout="wide")
 
 st.markdown("""
 <style>
@@ -19,8 +22,6 @@ span[aria-label="Test Positivity"] {
 </style>
 """, unsafe_allow_html=True)
 
-st.set_page_config(page_title="East Midlands Flu Surveillance", layout="wide")
-
 st.title("East Midlands Influenza Surveillance Dashboard")
 st.write("Weekly influenza metrics for the East Midlands region, sourced from UKHSA.")
 st.info(
@@ -33,6 +34,7 @@ st.info(
 )
 
 df = pd.read_csv("data/processed/east_midlands_flu_merged.csv", parse_dates=["date"])
+df_england = pd.read_csv("data/processed/england_flu_merged.csv", parse_dates=["date"])
 
 # --- Sidebar controls ---
 st.sidebar.header("Filters")
@@ -105,13 +107,25 @@ selected_labels = st.sidebar.multiselect(
     default=list(metric_labels.keys())
 )
 
+compare_england = st.sidebar.checkbox("Compare with England", value=False)
+
 # Convert the selected labels back to actual column names
 metrics = [metric_labels[label] for label in selected_labels]
 
-# Filter data based on selections 
+# Filter data based on selections
 filtered = df[(df["date"].dt.date >= start_date) & (df["date"].dt.date <= end_date)]
+filtered_england = df_england[(df_england["date"].dt.date >= start_date) & (df_england["date"].dt.date <= end_date)]
 
-# Display 
+
+def to_long(data, region):
+    """Reshape to one row per date/metric/region, which Altair needs."""
+    out = data[["date"] + metrics].rename(columns={v: k for k, v in metric_labels.items()})
+    out = out.melt(id_vars="date", var_name="Metric", value_name="Value")
+    out["Region"] = region
+    return out
+
+
+# Display
 if metrics:
     display_df = filtered.set_index("date")[metrics].rename(columns={v: k for k, v in metric_labels.items()})
     display_df.index = display_df.index.date  # strips the time component, keeps just the date
@@ -120,11 +134,37 @@ if metrics:
     tab1, tab2, tab3 = st.tabs(["Chart", "Tabular data", "Download"])
 
     with tab1:
-        chart_colors = [metric_colors[label] for label in selected_labels]
-        st.line_chart(display_df, color=chart_colors)
+        long_df = to_long(filtered, "East Midlands")
+        if compare_england:
+            long_df = pd.concat([long_df, to_long(filtered_england, "England")])
+
+        chart = alt.Chart(long_df).mark_line().encode(
+            x=alt.X("date:T", title=None),
+            y=alt.Y(
+                "Value:Q",
+                title="Rate per 100,000 (admissions) / % (positivity)",
+                scale=alt.Scale(domainMin=0),
+            ),
+            color=alt.Color(
+                "Metric:N",
+                scale=alt.Scale(
+                    domain=list(metric_colors.keys()),
+                    range=list(metric_colors.values()),
+                ),
+            ),
+            strokeDash=alt.StrokeDash(
+                "Region:N",
+                scale=alt.Scale(
+                    domain=["East Midlands", "England"],
+                    range=[[1, 0], [5, 3]],  # solid for East Midlands, dashed for England
+                ),
+            ),
+            tooltip=["date:T", "Metric:N", "Region:N", "Value:Q"],
+        )
+        st.altair_chart(chart, width="stretch")
 
     with tab2:
-        st.dataframe(display_df, use_container_width=True)
+        st.dataframe(display_df, width="stretch")
 
     with tab3:
         st.write("Download the currently filtered view:")
