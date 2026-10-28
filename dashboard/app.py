@@ -25,12 +25,8 @@ span[aria-label="Test Positivity"] {
 st.title("East Midlands Influenza Surveillance Dashboard")
 st.write("Weekly influenza metrics for the East Midlands region, sourced from UKHSA.")
 st.info(
-    "**Data note:** UKHSA pauses hospitalisation-related flu metrics over summer — "
-    "the 2025–2026 season ended 16 April 2026, with ICU/HDU and hospital admission data "
-    "resuming for winter 2026. Hospital admission rate is additionally affected by UKHSA's "
-    "September 2024 regional geography restructuring (9 Regions → 4 Super Regions), which "
-    "changed how it's reported at the East Midlands level from that point on. Test positivity "
-    "is reported year-round and is shown up to the most recent available week."
+    "**Data note:** UKHSA only reports hospital and ICU/HDU admissions during the winter flu season, "
+    "so those lines have gaps over summer. Test positivity is reported year-round. "
 )
 
 df = pd.read_csv("data/processed/east_midlands_flu_merged.csv", parse_dates=["date"])

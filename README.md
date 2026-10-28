@@ -1,29 +1,36 @@
 # PROJECT IN PROGRESS
 
 # East Midlands Influenza Surveillance Dashboard
-This project analyses weekly influenza surveillance data for the East Midlands, sourced from the [UKHSA Data Dashboard API](https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/Influenza/geography_types/UKHSA%20Region/geographies/East%20Midlands/metrics?format=api). It pulls hospital admission rates, ICU/HDU admission rates, and test positivity, presenting them as an interactive dashboard to explore trends directly. It runs on a weekly schedule via GitHub Actions, automatically pulling new data as UKHSA publishes it. 
+This project analyses weekly influenza surveillance data for the East Midlands, sourced from the [UKHSA Data Dashboard API](https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/Influenza/geography_types/UKHSA%20Region/geographies/East%20Midlands/metrics?format=api). It pulls hospital admission rates, ICU/HDU admission rates, and test positivity, presenting them as an interactive dashboard to explore trends directly. England-level data from the same API can be overlaid to compare the region with the national picture. It runs on a weekly schedule via GitHub Actions, automatically pulling new data as UKHSA publishes it. 
 
 The project was built to advance my technical skills, following my [RNA-seq reproducibility project](https://github.com/abbielgregg/rna-seq-hpc-pipeline) to move from molecular-level analysis to population-level public health surveillance. Each project has a similar emphasis on transparent, reproducible data handling. I also wanted to develop a project using Python. 
 
 View the live dashboard **[here](https://influenza-surveillance-eastmidlands.streamlit.app)**.
 
 ## Data Availability 
-- Test positivity: complete coverage, 2017–present (reported year-round, weekly in season / fortnightly in summer)
-- ICU/HDU admission rate: available 2020–present, but currently paused. UKHSA confirms seasonal reporting: the 2025–2026 FluSurvey season ended 16 April 2026, and hospitalisation-related metrics pause over summer, resuming for winter 2026 ([UKHSA source](https://ukhsa-dashboard.data.gov.uk/respiratory-viruses/influenza)).
-- Hospital admission rate: available 2020-09-28 to 2024-05-13 under the "East Midlands" (UKHSA Region) geography. This predates UKHSA's regional geography restructuring (9 UKHSA Regions → 4 UKHSA Super Regions, effective 30 September 2024), which changed how this metric is reported at the East Midlands level going forward.
+
+Data comes from the UKHSA Data Dashboard API for two geographies: East Midlands (UKHSA Region) and England (Nation). All three metrics are rates per 100,000 population (admissions) or a percentage (positivity), so the two geographies are directly comparable.
+
+**East Midlands**
+- Test positivity: 2017 to present, reported year-round.
+- Hospital admission rate and ICU/HDU admission rate: 2020 to present. UKHSA reports these seasonally, during the winter flu season, so both series have gaps over summer.
+- The "complete overlap" dataset (weeks where all three metrics have data) covers 2020-09-28 onwards.
+
+**England**
+- Hospital admission rate and ICU/HDU admission rate: 2015 to present.
+- Test positivity: 2017 to present.
 
 ### Cleaning the Data
 
-The week of 2018-01-01 appeared twice in the ICU/HDU dataset, with UKHSA publishing two different values for that same week (0.40 and 0.51). I resolved the error by keeping last published value, assuming it was an updated figure. 
-
-**As of current date** East Midlands has 485 weeks, with 228 complete weeks from 2020-09-28 to 2026-10-12. This is the same as before, and the hospital data now runs to the present. England has 589 weeks from 2015. The hospital and ICU/HDU rates have no gaps at all. Test positivity only starts in 2017-07-03, which accounts for the 104 missing weeks. Its complete overlap is 485 weeks, from 2017-07-03 to 2026-10-12. For my comparison, England's data covers every period for East Midlands. The East Midlands hospital and ICU/HDU series have gaps (257 and 169 missing weeks), and those will show up as breaks in the lines when overlaid. Test positivity is the one metric both places have for the full history, so it’s the cleanest one for comparison.
+- **Age bands:** The England files also contain rows for individual age groups. I kept only the all-ages, all-sexes rows (`age == "all"`, `sex == "all"`) so there is one row per week.
+- **Duplicate week:** The week of 2018-01-01 appeared twice in the England ICU/HDU dataset, with UKHSA publishing two different values for that same week (0.40 and 0.51). I resolved this by keeping the last published value, assuming it was an updated figure. The cleaning script prints a warning when this happens.
 
 ## Outlier Detection
 Standard IQR-based potential outlier detection flagged a notable number of points across all three metrics: 16 for hospital admissions, 43 for ICU/HDU admissions, and 58 for test positivity. 
 
 Visual inspection of the time series confirms these are not data quality issues. They correspond to expected winter flu season peaks, which recur predictably every year. IQR methods assume a roughly stable distribution and are not well suited to inherently seasonal data like this. 
 
-A seasonally-aware method e.g. comparing each point to the same calendar week in other years would be more appropriate for genuine anomaly detection in this dataset 
+A seasonally-aware method e.g. comparing each point to the same calendar week in other years would be more appropriate for genuine anomaly detection in this dataset.
 
 Cross-referencing with [UKHSA's Winter 2022 to 2023 seasonal respiratory surveillance report](https://www.gov.uk/government/statistics/influenza-in-the-uk-annual-epidemiological-reports/surveillance-of-influenza-and-other-seasonal-respiratory-viruses-in-the-uk-winter-2022-to-2023) confirms the largest spike in this dataset (hospital admissions and ICU/HDU admissions both peaking around week 51 2022) matches a nationally-documented, unusually severe flu season, not a data anomaly.
 
@@ -39,12 +46,12 @@ Cross-referencing with [UKHSA's Winter 2022 to 2023 seasonal respiratory surveil
 - [x] Add a public health analysis section in docs
 - [x] Add a section to download the .csv files
 - [x] Make sidebar tags the same colour as lines on the graph
+- [x] Fetch and clean England data, with a toggle to compare it against East Midlands
+- [x] Dynamic chart title based on the selected metrics
 - [ ] Add a ML aspect 
 - [ ] Add a storyboard/slideshow of key findings (e.g. incl 2022-2023 flu surge)
 - [ ] Add to the public health analysis section in docs
-- [ ] Expand dataset using overall UK data and compare to EM
 - [ ] Expand dataset to show population density (map) or weather
 - [ ] Stats test: is this seasons peak statistically higher than the historical average?
 - [ ] Architecture diagram to show the pipeline of repo (add to README)
 - [ ] A short demo vid/gif showing the dashboard in action (add to README)
-
