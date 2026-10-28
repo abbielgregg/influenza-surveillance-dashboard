@@ -134,33 +134,49 @@ if metrics:
     tab1, tab2, tab3 = st.tabs(["Chart", "Tabular data", "Download"])
 
     with tab1:
+        # Dynamic title and y-axis label 
+        if len(selected_labels) == len(metric_labels):
+            metric_part = "All metrics"
+        elif len(selected_labels) == 2:
+            metric_part = " and ".join(selected_labels)
+        else:
+            metric_part = selected_labels[0]
+
+        region_part = "East Midlands vs England" if compare_england else "East Midlands"
+        chart_title = f"{metric_part}: {region_part}"
+
+        if selected_labels == ["Test Positivity"]:
+            y_title = "Test positivity (%)"
+        elif "Test Positivity" not in selected_labels:
+            y_title = "Admissions per 100,000"
+        else:
+            y_title = "Rate per 100,000 (admissions) / % (positivity)"
+
+        # Data 
         long_df = to_long(filtered, "East Midlands")
         if compare_england:
             long_df = pd.concat([long_df, to_long(filtered_england, "England")])
 
+        # Chart
         chart = alt.Chart(long_df).mark_line().encode(
             x=alt.X("date:T", title=None),
-            y=alt.Y(
-                "Value:Q",
-                title="Rate per 100,000 (admissions) / % (positivity)",
-                scale=alt.Scale(domainMin=0),
-            ),
+            y=alt.Y("Value:Q", title=y_title, scale=alt.Scale(domainMin=0)),
             color=alt.Color(
                 "Metric:N",
                 scale=alt.Scale(
-                    domain=list(metric_colors.keys()),
-                    range=list(metric_colors.values()),
+                    domain=selected_labels,
+                    range=[metric_colors[label] for label in selected_labels],
                 ),
             ),
             strokeDash=alt.StrokeDash(
                 "Region:N",
                 scale=alt.Scale(
                     domain=["East Midlands", "England"],
-                    range=[[1, 0], [5, 3]],  # solid for East Midlands, dashed for England
+                    range=[[1, 0], [5, 3]],
                 ),
             ),
             tooltip=["date:T", "Metric:N", "Region:N", "Value:Q"],
-        )
+        ).properties(title=chart_title)
         st.altair_chart(chart, width="stretch")
 
     with tab2:
