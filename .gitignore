@@ -181,3 +181,5 @@ cython_debug/
 .cursorindexingignore.venv/
 .venv/
 .DS_Store
+
+data/raw/map/
