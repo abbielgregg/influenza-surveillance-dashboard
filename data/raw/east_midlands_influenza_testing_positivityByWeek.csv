@@ -14,8 +14,8 @@ infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,in
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2017,9,39,2017-09-25,1.17,False
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2017,10,40,2017-10-02,3.5,False
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2017,10,41,2017-10-09,6.76,False
-infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2017,10,42,2017-10-16,4.03,False
-infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2017,10,43,2017-10-23,2.24,False
+infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2017,10,42,2017-10-16,6.05,False
+infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2017,10,43,2017-10-23,3.73,False
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2017,10,44,2017-10-30,0.92,False
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2017,11,45,2017-11-06,1.5,False
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2017,11,46,2017-11-13,0.86,False
@@ -486,4 +486,5 @@ infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,in
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2026,10,42,2026-10-12,7.38,False
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2026,10,43,2026-10-19,5.42,False
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2026,10,44,2026-10-26,13.07,False
-infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2026,11,45,2026-11-02,13.49,False
+infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2026,11,45,2026-11-02,13.3,False
+infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_testing_positivityByWeek,testing,default,all,all,2026,11,46,2026-11-09,17.37,False
