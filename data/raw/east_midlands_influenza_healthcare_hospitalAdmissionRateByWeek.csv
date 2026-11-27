@@ -231,3 +231,4 @@ infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,in
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_healthcare_hospitalAdmissionRateByWeek,healthcare,default,all,all,2026,10,44,2026-10-26,2.84,False
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_healthcare_hospitalAdmissionRateByWeek,healthcare,default,all,all,2026,11,45,2026-11-02,3.62,False
 infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_healthcare_hospitalAdmissionRateByWeek,healthcare,default,all,all,2026,11,46,2026-11-09,5.04,False
+infectious_disease,respiratory,Influenza,UKHSA Region,East Midlands,E45000016,influenza_healthcare_hospitalAdmissionRateByWeek,healthcare,default,all,all,2026,11,47,2026-11-16,10.62,False
